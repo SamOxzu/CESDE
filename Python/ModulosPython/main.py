@@ -1,3 +1,0 @@
-import operaciones
-
-operaciones.mensaje()
