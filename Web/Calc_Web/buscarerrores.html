@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de Eventos con JS</title>
+</head>
+<body>
+    <h1>Sistema de Notas</h1>
+    <form>
+        <label for="nota1">Nota 1</label>
+        <input type="number" id="nota1" name="nota1">
+        <span id="mensnota1" style="color:red"></span>
+        <br>
+        <label for="nota2">Nota 2</label>
+        <input type="number" id="nota2" name="nota2">
+        <span id="mensnota2" style="color:red"></span>
+        <br>
+        <label for="nota3">Nota 3</label>
+        <input type="number" id="nota3" name="nota3">
+        <span id="mensnota3" style="color:red"></span>
+        <br>
+        <label for="definitiva">Definitiva:</label>
+        <span id="mensdefinitiva" style="color:red"></span>
+        <br>
+        <label for="observacion">Observación:</label>
+        <span id="mensobservacion" style="color:red"></span>
+        <br>
+        <button id="btncalcular" type="button">Calcular</button>
+    </form>
+    <script>
+        /*
+        Generar una aplicación que permita leer 3 notas y que esta
+        permita mostrar la definitiva y una observación que indique si gana,
+        pierde o habilita, según la definitiva. Se gana con una nota definitiva superior
+        o igual a 3, se habilita con una nota definitiva entre 2 y 2.94 y se pierde con 
+        nota definitiva inferior a 2.
+
+        Se debe generar evento(s) en el DOM para calcular la definitiva y la observación. 
+        Además, cuando posicione el punto de inserción en cada una de las notas, 
+        se muestre un mensaje que indique que la nota respectiva es obligatoria y sino 
+        está posicionado, que no se muestre el mensaje respectivo.
+        */
+
+        let nota1 = document.getElementById('nota1');
+        
+        nota1.addEventListener('focus',function(){
+            document.getElementById('mensnota1').innerHTML = "* La nota 1 es obligatoria";
+        })
+
+        nota1.addEventListener('blur',function(){
+            document.getElementById('mensnota1').innerHTML ="";
+        })
+        
+
+        let nota2 = document.getElementById('nota2');
+        
+        nota2.addEventListener('focus',function(){
+            document.getElementById('mensnota2').innerHTML = "* La nota 2 es obligatoria";
+        })
+
+        nota2.addEventListener('blur',function(){
+            document.getElementById('mensnota2').innerHTML = "";
+        })
+        
+
+        let nota3 = document.getElementById('nota3');
+        
+        nota3.addEventListener('focus',function(){
+            document.getElementById('mensnota3').innerHTML = "* La nota 3 es obligatoria";
+        })
+
+        nota3.addEventListener('blur',function(){
+            document.getElementById('mensnota3').innerHTML = "";
+        })
+
+        
+        function calcdefinitiva(){
+            if (nota1.value != "" && nota2.value!= "" && nota3.value != "") {
+                console.log("Entró en el if")
+                let def = (parseFloat(nota1.value) + parseFloat(nota2.value) + parseFloat(nota3.value))/3;
+                document.getElementById('mensdefinitiva').innerHTML = (parseFloat(nota1.value) + parseFloat(nota2.value) + parseFloat(nota3.value))/3;
+                if (def >= 3) {
+                    document.getElementById('mensobservacion').innerHTML = "Gana La Materia";
+                }
+                else{
+                    if (def >= 2) {
+                        document.getElementById('mensobservacion').innerHTML = "Debe Habilitar";
+                    }
+                    else{
+                        document.getElementById('mensobservacion').innerHTML = "Pierde La Materia";
+                    }
+                }
+            } else {
+                document.getElementById('mensdefinitiva').innerHTML = "Deben llenarse todos los campos."
+                document.getElementById('mensobservacion').innerHTML = "Deben llenarse todos los campos."
+            }
+        }
+
+        // Evento click del botón calcular
+        let btncalcular = document.getElementById('btncalcular');
+        btncalcular.addEventListener('click',calcdefinitiva);
+    </script>
+</body>
+</html>

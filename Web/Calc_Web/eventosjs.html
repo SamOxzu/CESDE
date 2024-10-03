@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos Js</title>
+</head>
+<body>
+    <h1>Ventas El Paisa</h1>
+    <form>
+        <label for="valorventa">Valor Venta</label>
+        <input type="number" id="valorventa" name="valorventa" placeholder="Valor venta"
+        >
+        <span id ="mensvalorventa" style="color: red"></span>
+        <br><br>
+        <label for="porcomision">Porcentaje de comisión</label>
+        <input type="number" id="porcomision" name="porcomision" placeholder="Porcentaje de Comisión"
+        >
+        <span id="mensporcomision" name="valorcomision" style="color: red;"></span>
+        <br><br>
+        <span id ="mensvalorventa" style="color: red;"></span>
+        <br><br>
+        <label>Valor comisión</label>
+        <span id ="valorcomision" style="color: red;"></span>
+        <br><br>
+        <button type="button" id="btncomision" name="btncomision">Calcular Comisión</button>
+
+    </form>
+    <script>
+        let valorventa = document.getElementById('valorventa');
+        valorventa.onfocus = function () {
+            document.getElementById('mensvalorventa').innerHTML ="*el valor venta es obligatorio";
+        }
+        //onblur para perder el foco
+        valorventa.onblur = ()=> {
+            document.getElementById('mensvalorventa').innerHTML ="";
+        }
+        let porcomision = document.getElementById('porcomision')
+
+        //funcion de javaScript addEventListener
+        porcomision.addEventListener('focus',()=>{
+            document.getElementById('mensporcomision').innerHTML = "* el porcentaje es obligatorio";
+        })
+        porcomision.addEventListener('blur',function(){
+            document.getElementById('mensporcomision').innerHTML ="";
+        })
+        
+        /*function micomision() {
+            if (valorventa.value != "" && porcomision.value != "") {
+                let micomision = parseFloat(valorventa.value) * (parseFloat(porcomision.value)/100);
+                //asignar la variable comiion al objeto con el porcomision
+                document.getElementById('valorcomision').innerHTML = micomision;
+            } else {
+                // alert("Debe ingresar los dos valores")
+                document.getElementById('valorcomision').innerHTML = "Debe ingresar los 2 valores" 
+            }
+        }*/
+
+        function micomision(vventa, pcomision) {
+            if (vventa != "" && pcomision != "") {
+                let micomision = parseFloat(vventa) * (parseFloat(pcomision)/100);
+                //asignar la variable comiion al objeto con el porcomision
+                document.getElementById('valorcomision').innerHTML = micomision;
+            } else {
+                // alert("Debe ingresar los dos valores")
+                document.getElementById('valorcomision').innerHTML = "Debe ingresar los 2 valores" 
+            }
+        }
+
+        let btncomision = document.getElementById('btncomision')
+        /*
+        btncomision.addEventListener('click',()=>{
+            if (valorventa.value != "" && porcomision.value != "") {
+                let micomision = parseFloat(valorventa.value) * (parseFloat(porcomision.value)/100);
+                //asignar la variable comiion al objeto con el porcomision
+                document.getElementById('valorcomision').innerHTML = micomision;
+            } else {
+                // alert("Debe ingresar los dos valores")
+                document.getElementById('valorcomision').innerHTML = "Debe ingresar los 2 valores" 
+            }
+        })*/
+
+        // btncomision.addEventListener('click',micomision);
+        btncomision.addEventListener('click',()=>micomision(valorventa.value, porcomision.value));
+    </script>=
+</body>
+</html>
