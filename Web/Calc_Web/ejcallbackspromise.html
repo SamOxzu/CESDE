@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>callbacks - promise</title>
+</head>
+<body>
+    <h1>manejo de callbacks - promise - eventos DOM</h1>
+    <span id="menservidor" style="color: red;">
+
+    </span>
+    <script>
+      function saludar() {
+        var nombre = prompt("ingrese el nombre")
+        alert(`bienvenid@, ${nombre}`)
+      }
+      function login() {
+        var usuario = prompt("ingrese el usuario") 
+        alert(`usted se ha conectado con el usuario ${usuario}`)
+      }
+      function id() {
+            var id = prompt("ingrese el documento")
+            alert(`su tarjeta de identidad es ${id}`)
+      }
+      function llamarfuncion(fncallback) {
+          fncallback()
+      }
+      //ejecutar la funcion llamarfuncion
+      /*llamarfuncion(saludar)
+      llamarfuncion(login)
+      llamarfuncion(id)*/
+      function funcion1(params) {
+          console.log("no se bloquea la aplicacion en comunicacion asincrona");
+          console.log("estoy enviando un mensaje desde la aplicacion");
+          console.log("estamos esperado respuestas del servidor");
+      }
+      function fasync(fn) {
+        setTimeout(()=>{
+            //console.log("respuestas de servidor...");
+            document.getElementById('menservidor').innerHTML = "registro encontrado..."
+        }, 10000);
+        fn();
+      }
+      fasync(funcion1)
+      /*generar una funcion (callback - asincrono) que permita imprimir cualquier documento, y cuando lo haya realizado
+      que muestre  un mensaje que asi lo indique*/
+    </script>
+</body>
+</html>

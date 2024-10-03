@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica CallBack</title>
+</head>
+<body>
+    <h1>solucion de eercicios callback</h1>
+    <h2>resultado</h2>
+    <spam id="resultado" style="font-size: 28px;color: blueviolet;"></spam>
+    <script>
+        
+        /*1. Leer 2 numeros y luego se puedan invocar las funciones de sumar,
+        restar, multiplicar y dividir, de tal manera que se muestre
+        por consola el resultado de cada operación, con base en estos 2 números leídos
+        en la función callback.*/
+
+        /*2. Leer 2 numeros y un operador (para suma, resta, multiplicación y división), de 
+        tal manera que se retorne el resultado de cada operación, con base en los 2 números
+        leídos en la función callback.*/
+
+        /*let suma = (n1,n2) => parseFloat(n1)+parseFloat(n2);
+        let resta = (n1,n2) => parseFloat(n1)-parseFloat(n2);
+        let multiplicacion = (n1,n2) => parseFloat(n1)*parseFloat(n2);
+        let division = (n1,n2) => parseFloat(n1)/parseFloat(n2);
+        */
+
+        /*function oper(n1,n2) {
+            console.log(`La suma de ${n1} y ${n2} es ${parseFloat(n1)+parseFloat(n2)}`);
+            console.log(`La resta de ${n1} y ${n2} es ${n1-n2}`);
+            console.log(`La multiplicacion de ${n1} y ${n2} es ${n1*n2}`);
+            console.log(`La division de ${n1} y ${n2} es ${n1/n2}`);
+
+        }*/
+        function operar(valor1,valor2,operar) {
+            let resultado = 0 ;
+            switch (operar) {
+                case "+":
+                    resultado = parseFloat(valor1) + parseFloat(valor2);
+                    break;
+                case "-":
+                resultado = parseFloat(valor1) - parseFloat(valor2);
+                    break;
+                case "*":
+                resultado = parseFloat(valor1) * parseFloat(valor2);
+                    break;
+                case "/":
+                resultado = parseFloat(valor1) / parseFloat(valor2);
+            }
+            return resultado;
+        }
+
+
+        function llamarfuncion(funcion){
+        var n1 = prompt("Ingrese El Primer Número");
+        var n2 = prompt("Ingrese El Segundo Número");
+        let operador = prompt("ingrese el operador")
+        return funcion(n1,n2,operador);
+        }
+
+        document.getElementById('resultado').innerHTML = llamarfuncion(operar);
+        /*
+        llamarfuncion(suma);
+        llamarfuncion(resta);
+        llamarfuncion(multiplicacion);
+        llamarfuncion(division);*/
+        // llamarfuncion(oper);
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <script>
+    
+    /*
+        3. Leer el nombre de un usuario y la función invocada valide que si 
+        el usuario existe, se muestren los datos del usuario como nombre y apellido
+        - en un objeto (tipo key:value) - de lo contrario que muestre 
+        un mensaje así lo indique. Esta función debe mostrar el siguiente mensaje: 
+        Espere por favor... (pasados 5 segundos) hasta que se muestre 
+        la información dada anteriormente.
+    */
+    function datos(usuario) {
+        setTimeout(() => {
+            let info = "";
+            if (usuario == "pperez") {
+                info = {nombre:"pepe", apellido:"perez"}
+            } else {
+                info = "error, usuario no existe..."
+            }
+            console.log(info);
+        }, 5000)
+        
+    }
+    //funcion callback
+    function fncall(fn) {
+        let usuario = prompt("ingrese el usuario")
+        fn(usuario)
+        console.log("espere, por favor...");
+    }
+    fncall(datos)
+    </script>
+</body>
+</html>
